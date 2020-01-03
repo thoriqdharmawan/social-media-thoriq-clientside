@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { editUserDetails } from '../redux/actions/userActions';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import themeFile from '../util/Theme';
 import { makeStyles } from '@material-ui/core/styles';
-
+import MyButton from '../util/MyButton';
+// Redux
+import { editUserDetails } from '../redux/actions/userActions';
 // MUI
 import Tooltip from '@material-ui/core/Tooltip';
 import EditIcon from '@material-ui/icons/Edit';
@@ -16,8 +16,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles({
-    edit: {
-
+    // edit: {
+    //     float: 'right'
+    // },
+    editIcon: {
+        float: 'right',
+        marginTop: '25px'
+    },
+    textField: {
+        marginBottom: '10px'
     }
 });
 
@@ -28,6 +35,12 @@ const EditDetalis = (params) => {
     const [locationS, setLocation] = useState('');
     const [openS, setOpen] = useState(false);
 
+    const mapUserDetailsToState = () => {
+        setWebsite(params.user.credentials.website);
+        setBio(params.user.credentials.bio);
+        setLocation(params.user.credentials.location);
+    }
+
     const handleOpen = () => {
         setOpen(true);
         mapUserDetailsToState();
@@ -37,18 +50,9 @@ const EditDetalis = (params) => {
         setOpen(false);
     }
 
-    const mapUserDetailsToState = () => {
-        setWebsite(params.user.credentials.website);
-        setBio(params.user.credentials.bio);
-        setLocation(params.user.credentials.location);
-    }
-
-    useEffect(() => {
-        mapUserDetailsToState();
-    }, [1])
-
     const handleChangeBio = (e) => {
         setBio(e.target.value);
+        console.log('bios : ', bioS);
     }
     const handleChangeWebsite = (e) => {
         setWebsite(e.target.value);
@@ -71,11 +75,9 @@ const EditDetalis = (params) => {
 
     return (
         <div>
-            <Tooltip title="Edit Details" >
-                <Fab size="small" className={classes.editIcon} aria-label="edit">
-                    <EditIcon onClick={() => handleOpen()} className={classes.edit} />
-                </Fab>
-            </Tooltip>
+            <MyButton tip="Edit details" onClick={() => handleOpen()} btnClassName="classes.editIcon">
+                <EditIcon color="primary" />
+            </MyButton>
             <Dialog
                 open={openS}
                 onClose={() => handleClose()}

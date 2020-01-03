@@ -8,27 +8,22 @@ import Profile from '../component/Profile';
 // MUI Stuff
 import Grid from '@material-ui/core/Grid';
 
+import { connect } from 'react-redux';
+import { getScreams } from '../redux/actions/dataActions';
+
 class Home extends Component {
     state = {
         screams: null
     }
 
     componentDidMount() {
-        axios.get('/screams')
-            .then(res => {
-                this.setState({
-                    screams: res.data
-                })
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        this.props.getScreams()
     }
     
-
     render() {
-        let recentScreamMarkup = this.state.screams ? (
-            this.state.screams.map(scream => <Scream key={scream.screamId} scream={scream}/>)
+        const { screams, loading } = this.props.data;
+        let recentScreamMarkup = !loading ? (
+            screams.map(scream => <Scream key={scream.screamId} scream={scream}/>)
         ) : <p>Loading ... </p>
         return (
             <Grid container spacing={2}>
@@ -43,4 +38,8 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+    data: state.data
+});
+
+export default connect(mapStateToProps, { getScreams })(Home);

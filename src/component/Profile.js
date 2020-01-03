@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
-// import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import EditDetalis from './EditDetalis';
+import MyButton from '../util/MyButton';
 
 // REDUX
 import { connect } from 'react-redux';
@@ -18,10 +18,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import ContactlessIcon from '@material-ui/icons/Contactless';
 import EditIcon from '@material-ui/icons/Edit';
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
-import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     card: {
@@ -49,13 +46,15 @@ const useStyles = makeStyles({
     },
     editIcon: {
         position: 'absolute',
-        bottom: 0,
-        right: 0
+        bottom: -20,
+        right: 0,
+        
     },
     logout: {
         marginTop: 25,
         marginBottom: 0,
-        fontVariant: 'all-small-caps'
+        fontVariant: 'all-small-caps',
+        float: 'left'
     }
 });
 
@@ -95,13 +94,10 @@ function Profile(params) {
                             onChange={handleImageChange}  
                             hidden="hidden"
                             />
-                        <Tooltip title="Edit Profile">
-                            <Fab onClick={() => handleEditPicture()} size="small" className={classes.editIcon} aria-label="edit">
-                                <EditIcon />
-                            </Fab>
-                        </Tooltip>
+                        <MyButton tip="Edit profile" onClick={() => handleEditPicture()} btnClassName="classes.editIcon">
+                            <EditIcon color="primary" />
+                        </MyButton>
                     </CardContent>
-               
                     <CardContent className={classes.content}>
                         <Typography className={classes.username} color="primary" variant="h5" component={Link} to={`/users/${handle}`} color="primary">{handle}</Typography> 
                         {
@@ -135,15 +131,10 @@ function Profile(params) {
                                     <CalendarTodayIcon color="primary" variant="h5"/> <span>Join sience {dayjs(createdAt).format('MMM YYYY')}</span>
                                 </Fragment>
                             )
-                        }
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            className={classes.logout}
-                            startIcon={<MeetingRoomIcon />}
-                            onClick={handleLogout}
-                        > Logout
-                        </Button>
+                        } <hr/>
+                            <MyButton tip="Logout" onClick={handleLogout} btnClassName="classes.logout">
+                                <MeetingRoomIcon color="primary" />
+                            </MyButton>
                         <EditDetalis />
                     </CardContent>
                 </Card>
