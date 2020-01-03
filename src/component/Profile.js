@@ -99,7 +99,7 @@ function Profile(params) {
                         </MyButton>
                     </CardContent>
                     <CardContent className={classes.content}>
-                        <Typography className={classes.username} color="primary" variant="h5" component={Link} to={`/users/${handle}`} color="primary">{handle}</Typography> 
+                        <Typography className={classes.username} color="primary" variant="h5" component={Link} to={`/users/${handle}`} >{handle}</Typography> 
                         {
                             bio && (
                                 <Fragment>
@@ -120,7 +120,7 @@ function Profile(params) {
                             website && ( 
                                 <Fragment>
                                     <br/>
-                                    <LanguageIcon color="primary" variant="h5"/> <a>{website}</a>
+                                    <LanguageIcon color="primary" variant="h5"/> <span>{website}</span>
                                 </Fragment>
                             )
                         } 

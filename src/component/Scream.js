@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime'
 import MyButton from '../util/MyButton';
+import DeleteScream from './DeleteScream';
 
 // MUI Stuff
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -25,13 +25,15 @@ const useStyles = makeStyles({
    card: {
       display: 'flex',
       marginBottom: 10,
+      position: 'relative'
    },
    image: {
-      marginTop: 25,
-      marginLeft: 25,
+      marginTop: 15,
+      marginLeft: 15,
    },
    content: {
-      padding: 16,
+      paddingBottom: 12,
+      paddingTop: 12,
       objectFit: 'cover'
    },
    time: {
@@ -54,7 +56,10 @@ function Scream(props) {
          commentCount
       },
       user: {
-         authenticated
+         authenticated,
+         credentials: {
+            handle
+         }
       }
    } = props
    const likedScream = () => {
@@ -72,6 +77,10 @@ function Scream(props) {
    const unlikeScream = () => {
       props.unlikeScream(props.scream.screamId);
    }
+
+   const deleteButton = authenticated && userHandle === handle ? (
+      <DeleteScream screamId={screamId} />
+   ) : null
 
    const likeButton = !authenticated ? (
       <MyButton tip="Like">
@@ -96,6 +105,7 @@ function Scream(props) {
          <Avatar className={classes.image} alt="Profile" src={userImage} />
          <CardContent className={classes.content}>
             <Typography variant="h5" component={Link} to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
+            {deleteButton}
             <Typography className={classes.time} variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
             <Typography variant="body1">{body}</Typography>
             {likeButton}

@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppIcon from '../images/logo.png';
 import { Link } from 'react-router-dom';
@@ -22,11 +22,6 @@ function Login(params) {
     const classes = useStyles();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
-
-    // const [userState, userDispatch] = useReducer(params.loginUser, params.user);
-    // console.log('User :', userState);
 
     const handleSubmit = (e) => {
         e.preventDefault();
