@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PostScream from '../component/PostScream';
 
 // ==
 import Scream from '../component/Scream';
@@ -30,6 +31,7 @@ class Home extends Component {
                     <Profile />
                 </Grid>
                 <Grid item sm={9} xs={12}>
+                    <PostScream />
                     {recentScreamMarkup}
                 </Grid>
             </Grid>

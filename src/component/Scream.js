@@ -101,21 +101,21 @@ function Scream(props) {
    )
 
    return (
-      <Card className={classes.card}>
-         <Avatar className={classes.image} alt="Profile" src={userImage} />
-         <CardContent className={classes.content}>
-            <Typography variant="h5" component={Link} to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
-            {deleteButton}
-            <Typography className={classes.time} variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
-            <Typography variant="body1">{body}</Typography>
-            {likeButton}
-            <span>{likeCount} Likes</span>
-            <MyButton tip="Comments">
-               <ChatIcon color="primary" />
-            </MyButton>
-            <span>{commentCount} Comments</span>
-         </CardContent>
-      </Card>
+         <Card className={classes.card}>
+            <Avatar className={classes.image} alt="Profile" src={userImage} />
+            <CardContent className={classes.content}>
+               <Typography variant="h5" component={Link} to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
+               {deleteButton}
+               <Typography className={classes.time} variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
+               <Typography variant="body1">{body}</Typography>
+               {likeButton}
+               <span>{likeCount} Likes</span>
+               <MyButton tip="Comments">
+                  <ChatIcon color="primary" />
+               </MyButton>
+               <span>{commentCount} Comments</span>
+            </CardContent>
+         </Card>
    )
 }
 

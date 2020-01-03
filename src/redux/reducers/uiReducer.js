@@ -6,7 +6,8 @@ const initialState = {
         password: false,
         email: false,
         handle: false,
-        general: false
+        general: false,
+        body: false
     }
 };
 

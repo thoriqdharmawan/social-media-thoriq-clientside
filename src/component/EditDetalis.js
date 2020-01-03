@@ -17,10 +17,7 @@ const useStyles = makeStyles({
     // edit: {
     //     float: 'right'
     // },
-    editIcon: {
-        float: 'right',
-        marginTop: '25px'
-    },
+
     textField: {
         marginBottom: '10px'
     }

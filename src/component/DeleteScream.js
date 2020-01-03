@@ -11,7 +11,7 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 // REDUX
 import { connect } from 'react-redux';
-import { deleteScream } from '../redux/actions/dataActions';
+import { deleteScream, getScreams } from '../redux/actions/dataActions';
 
 const useStyles = makeStyles({
     deleteButton: {
@@ -38,6 +38,7 @@ const DeleteScream = (props) => {
         props.deleteScream(props.screamId);
         setOpen(false);
         console.log(props);
+        props.getScreams();
     }
 
     return (
@@ -67,4 +68,4 @@ const DeleteScream = (props) => {
 
 
 
-export default connect(null, {deleteScream})(DeleteScream);
+export default connect(null, {deleteScream, getScreams})(DeleteScream);

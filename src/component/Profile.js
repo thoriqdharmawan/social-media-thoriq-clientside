@@ -34,7 +34,9 @@ const useStyles = makeStyles({
     content: {
         padding: 25,
         paddingTop: 0,
-        objectFit: 'cover'
+        objectFit: 'cover',
+        position: 'relative'
+
     },
     username: {
         textAlign: 'center',
@@ -49,6 +51,11 @@ const useStyles = makeStyles({
         bottom: -20,
         right: 0,
         
+    },
+    editBio: {
+        position: 'absolute',
+        bottom: 8,
+        right: 25,
     },
     logout: {
         marginTop: 25,
@@ -94,9 +101,12 @@ function Profile(params) {
                             onChange={handleImageChange}  
                             hidden="hidden"
                             />
-                        <MyButton tip="Edit profile" onClick={() => handleEditPicture()} btnClassName="classes.editIcon">
-                            <EditIcon color="primary" />
-                        </MyButton>
+                            <div className={classes.editIcon}>
+                                <MyButton tip="Edit profile" onClick={() => handleEditPicture()} >
+                                    <EditIcon color="primary" />
+                                </MyButton>
+
+                            </div>
                     </CardContent>
                     <CardContent className={classes.content}>
                         <Typography className={classes.username} color="primary" variant="h5" component={Link} to={`/users/${handle}`} >{handle}</Typography> 
@@ -131,11 +141,13 @@ function Profile(params) {
                                     <CalendarTodayIcon color="primary" variant="h5"/> <span>Join sience {dayjs(createdAt).format('MMM YYYY')}</span>
                                 </Fragment>
                             )
-                        } <hr/>
+                        } <br/>
                             <MyButton tip="Logout" onClick={handleLogout} btnClassName="classes.logout">
                                 <MeetingRoomIcon color="primary" />
                             </MyButton>
-                        <EditDetalis />
+                            <div className={classes.editBio}>
+                                <EditDetalis />
+                            </div>
                     </CardContent>
                 </Card>
             )
